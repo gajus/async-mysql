@@ -6,6 +6,10 @@ let gulp = require('gulp'),
     eslint = require('gulp-eslint'),
     mocha = require('gulp-mocha');
 
+require('babel/register')({
+    experimental: true
+});
+
 gulp.task('lint', function () {
     return gulp
         .src(['./src/**/*.js', './src/tests/**/*.js'])
@@ -27,10 +31,6 @@ gulp.task('bundle', ['lint'], function () {
 });
 
 gulp.task('test', ['bundle'], function () {
-    require('babel/register')({
-    experimental: true
-});
-
     return gulp
         .src('./tests/*.js', {
             read: false
@@ -41,5 +41,5 @@ gulp.task('test', ['bundle'], function () {
 gulp.task('default', ['test']);
 
 gulp.task('watch', function () {
-    gulp.watch('src/**/*', ['default']);
+    gulp.watch(['src/**/*', 'tests/**/*'], ['default']);
 });

@@ -1,13 +1,41 @@
 'use strict';
 
-let mysql = {};
+let amysql = {},
+    mysql = require('mysql'),
+    asyncConnection;
 
-mysql.foo = async function () {
-    return new Promise((resolve) => {
-        setImmediate(function () {
-            resolve('FOO');
+amysql.connect = async (config) => {
+    return new Promise(function (resolve, reject) {
+        let db;
+
+        db = mysql.createConnection(config);
+
+        db.connect((err) => {
+            if (err) {
+                reject(new Error(err));
+            } else {
+                resolve(asyncConnection(db));
+            }
         });
     });
 };
 
-module.exports = mysql;
+asyncConnection = function (db) {
+    let connection = {};
+
+    connection.query = async (sql, values) => {
+        return new Promise(function (resolve, reject) {
+            db.query(sql, values, function (err, rows) {
+                if (err) {
+                    reject(new Error(err));
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+    };
+
+    return connection;
+};
+
+module.exports = amysql;

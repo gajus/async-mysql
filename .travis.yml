@@ -3,7 +3,20 @@ node_js:
     - '0.12'
     - '0.11'
     - '0.10'
+before_script:
+    - 'mysql -e "CREATE DATABASE `node_mysql`;"'
+script:
+    - 'npm test'
+after_script:
+    -
 install:
     - npm install
 notifications:
     email: false
+env:
+    - MYSQL_HOST=localhost MYSQL_DATABASE=node_mysql MYSQL_USER=root MYSQL_PASSWORD=
+mysql:
+    adapter: mysql
+    username: root
+    encoding: utf8
+    database: node_mysql
