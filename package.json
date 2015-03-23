@@ -31,7 +31,6 @@
     "mocha": "^2.2.1"
   },
   "dependencies": {
-    "bluebird": "^2.9.14",
     "mysql": "^2.5.5"
   }
 }
