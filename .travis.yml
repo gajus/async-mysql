@@ -4,7 +4,7 @@ node_js:
     - '0.11'
     - '0.10'
 before_script:
-    - 'mysql -e "CREATE DATABASE node_mysql;"'
+    - "mysql -e 'create database node_mysql;'"
 script:
     - 'npm test'
 after_script:
