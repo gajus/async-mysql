@@ -20,7 +20,7 @@ main = async () => {
     // async connect is the equivalent of calling mysql.createConnection and
     // mysql.connect, and obtaining the connection handle.
     // async connect options are passed to mysql.createConnection.
-    connection = await mysql.connect({
+    connection = mysql.createConnection({
         host: 'localhost'
     });
 
@@ -33,7 +33,13 @@ main = async () => {
         e;
         // [Error: ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INVALID_QUERY' at line 1]
     }
+
+    await connection.end();
 };
 
 main();
 ```
+
+## Beware
+
+This library has been created as part of [ES7 async function](https://github.com/lukehoban/ecmascript-asyncawait) proposal research. It covers basic use of [mysql](https://www.npmjs.com/package/mysql). I do not advise to use it in production, though I will be testing it in several private projects and update as I go – contributions are welcome too.

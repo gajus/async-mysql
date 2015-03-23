@@ -6,7 +6,7 @@ let amysql = {},
 
 amysql.connect = async (config) => {
     return new Promise(function (resolve, reject) {
-        let db;
+        let db,
 
         db = mysql.createConnection(config);
 
@@ -23,6 +23,10 @@ amysql.connect = async (config) => {
 asyncConnection = function (db) {
     let connection = {};
 
+    /**
+     * @param {String} sql
+     * @param {Array} values
+     */
     connection.query = async (sql, values) => {
         return new Promise(function (resolve, reject) {
             db.query(sql, values, function (err, rows) {
@@ -32,6 +36,17 @@ asyncConnection = function (db) {
                     resolve(rows);
                 }
             });
+        });
+    };
+
+    /**
+     *
+     */
+    connection.end = async () => {
+        db.end(function (err) {
+            if (err) {
+                throw new Error(err);
+            }
         });
     };
 
