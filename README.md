@@ -17,6 +17,9 @@ main = async () => {
         connection,
         rows;
 
+    // async connect is the equivalent of calling mysql.createConnection and
+    // mysql.connect, and obtaining the connection handle.
+    // async connect options are passed to mysql.createConnection.
     connection = await mysql.connect({
         host: 'localhost'
     });
