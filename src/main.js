@@ -6,7 +6,7 @@ let amysql = {},
 
 amysql.connect = async (config) => {
     return new Promise(function (resolve, reject) {
-        let db,
+        let db;
 
         db = mysql.createConnection(config);
 

@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gajus/async-mysql.js"
+    "url": "https://github.com/gajus/async-mysql"
   },
   "license": "BSD-3-Clause",
   "keywords": [
@@ -23,6 +23,7 @@
     "babel-eslint": "^2.0.2",
     "babel-runtime": "^4.7.16",
     "chai": "^2.1.2",
+    "chai-as-promised": "^4.3.0",
     "gulp": "^3.8.11",
     "gulp-babel": "^4.0.0",
     "gulp-eslint": "^0.7.0",
